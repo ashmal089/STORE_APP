@@ -1,55 +1,59 @@
 [app]
-
 # (str) Title of your application
-title = My Billing App
+title = MyApp
 
 # (str) Package name
-package.name = mybillingapp
+package.name = myapp
 
-# (str) Package domain (needed for android/ios packaging)
-package.domain = org.mycompany
+# (str) Package domain (must be unique)
+package.domain = org.example
 
-# (str) Source code where the main.py lives
+# (str) Source code where main.py is located
 source.dir = .
 
-# (list) Source files to include (let empty to include all the files)
+# (str) Main .py file of your app
+source.main = main.py
+
+# (list) List of inclusions using pattern matching
 source.include_exts = py,png,jpg,kv,atlas
 
-# (str) Application version
-version = 0.1
+# (str) Application versioning (method 1)
+version = 1.0.0
 
-# (list) Application requirements
-# (add any additional libraries your app needs)
+# (str) Application requirements
+# Example: requirements = python3,kivy
 requirements = python3,kivy
 
-# (list) Supported orientations
-orientation = portrait
-
-# (bool) Indicate if the application should be fullscreen or not
+# (bool) Indicate if the application should be fullscreen
 fullscreen = 0
 
-# (list) Permissions (add permissions if your app needs them)
-#android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE
+# (list) Permissions required by your app (comma-separated)
+android.permissions = INTERNET
 
-# (int) Minimum API your APK / AAB will support.
-android.minapi = 21
+# (str) Supported orientations (landscape, portrait or all)
+orientation = portrait
 
-# (int) Target Android API (recommended is 31 or latest supported)
-android.api = 31
-
-# (list) The Android architectures to build for.
-android.archs = arm64-v8a, armeabi-v7a
-
-# (bool) Enable AndroidX support (for modern apps)
-android.enable_androidx = True
-
-# (bool) Indicate whether the screen should stay on
-#android.wakelock = False
+# (str) Path to the icon
+icon.filename = %(source.dir)s/data/icon.png
 
 [buildozer]
-
-# (int) Log level (0 = error only, 1 = info, 2 = debug)
+# (int) Log level (0 = error, 1 = warn, 2 = info, 3 = debug)
 log_level = 2
 
-# (str) Path to build output (apk will be here)
-# bin_dir = ./bin
+# (str) The directory where the buildozer state is stored
+build_dir = .buildozer
+
+# (str) Android SDK/NDK versions
+android.sdk = 24
+android.ndk = 23b
+
+# (bool) Copy library instead of linking
+copy_libs = 1
+
+[android]
+# (list) Android application requirements (comma-separated)
+requirements = python3,kivy
+
+# (str) Android entry point
+entrypoint = org.kivy.android.PythonActivity
+
